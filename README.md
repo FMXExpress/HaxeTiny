@@ -2,6 +2,14 @@
 
 A direct Haxe port of the inference engine in https://github.com/WollyMonjac/Tiny-2.1, with a responsive browser chat UI. No backend, API key, or JavaScript inference library. The browser application and worker compile from Haxe to JavaScript; the same model engine also compiles to PHP, Python, and native C++. The original TINY.BIN is bundled unchanged.
 
+## Ready-to-run downloads
+
+Get the compiled packages from [GitHub Releases](https://github.com/FMXExpress/HaxeTiny/releases). Each release has separate browser JavaScript, PHP, Python, and native Linux x86-64 downloads, each including the original model and `RUNNING.txt`. No Haxe installation is needed to run them. PHP needs PHP CLI with mbstring; Python needs Python 3.
+
+The C++ download is a **native Linux x86-64 executable**, built on Debian 13. It requires glibc 2.38 or newer and libstdc++ with GLIBCXX_3.4.21 / CXXABI_1.3.7. Windows and macOS executables require builds on those platforms; WebAssembly is not configured. The browser download uses JavaScript.
+
+To package a release after building and testing all four targets, run `python3 scripts/package-release.py v0.1.0`. Archives and SHA-256 checksums go into the ignored `build/releases/` directory. This packaging script currently expects the native build to be Linux x86-64.
+
 ## Build and run
 
 Clone this repository and install Haxe 4.3.7 or newer, then:
