@@ -1,0 +1,4 @@
+-cp src
+-main Main
+-js dist/app.js
+-D js-es=6

@@ -1,0 +1,4 @@
+-cp src
+-main WorkerMain
+-js dist/worker.js
+-D js-es=6
