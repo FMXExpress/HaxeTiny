@@ -1,0 +1,3 @@
+-cp src
+-main CliMain
+-python build/python/tiny.py

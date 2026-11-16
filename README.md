@@ -1,6 +1,6 @@
 # HaxeTiny — Tiny 2.1 for modern browsers
 
-A direct Haxe port of the inference engine in https://github.com/WollyMonjac/Tiny-2.1, with a responsive browser chat UI. No backend, API key, or JavaScript inference library. The application and worker compile from Haxe to JavaScript. The original TINY.BIN is bundled unchanged.
+A direct Haxe port of the inference engine in https://github.com/WollyMonjac/Tiny-2.1, with a responsive browser chat UI. No backend, API key, or JavaScript inference library. The browser application and worker compile from Haxe to JavaScript; the same model engine also compiles to PHP, Python, and native C++. The original TINY.BIN is bundled unchanged.
 
 ## Build and run
 
@@ -16,9 +16,56 @@ python3 -m http.server 8080 --directory dist
 
 Open http://localhost:8080. Static hosting over HTTPS also works. Serve over HTTP rather than opening index.html as a file; browsers restrict worker and fetch access from file URLs. No haxelib dependencies. Generated JavaScript is checked in, so the dist directory runs without installing Haxe.
 
+## PHP, Python, and C++
+
+Run these commands from the repository root. Each runner loads `dist/TINY.BIN` by default, accepts a question as an argument, or reads one question per line from stdin. These targets provide a command-line interface and reusable model engine; the browser chat UI remains JavaScript-only.
+
+```sh
+# Python 3 (no third-party Python dependencies)
+haxe python.hxml
+python3 build/python/tiny.py "what is 7 times 8"
+
+# PHP CLI with the mbstring extension enabled (tested on PHP 8.4)
+haxe php.hxml
+php build/php/index.php "what is 7 times 8"
+
+# Native C++: install hxcpp and a supported C++ toolchain first
+haxelib install hxcpp 4.3.2
+haxe cpp.hxml
+./build/cpp/CliMain "what is 7 times 8"
+```
+
+On Windows the native executable is `build/cpp/CliMain.exe`. hxcpp requires the platform toolchain (GCC on Linux, Xcode command-line tools on macOS, or supported Visual Studio C++ tools on Windows). The native build was verified on Linux.
+
+All runners support `--model PATH`, `--creativity 0-9`, and `--help`. The CLI defaults to creativity **0** for reproducible answers; the browser defaults to **5**. For example:
+
+```sh
+python3 build/python/tiny.py --model dist/TINY.BIN --creativity 5 "tell me a joke"
+printf 'what is 7 times 8\nspell elephant\n' | python3 build/python/tiny.py
+```
+
+For embedding on any supported target:
+
+```haxe
+var model = new Model(sys.io.File.getBytes("dist/TINY.BIN"));
+var reply = model.answer("what is the capital of peru", 0);
+```
+
+The core accepts `haxe.io.Bytes`. In JavaScript, wrap an ArrayBuffer with `haxe.io.Bytes.ofData(buffer)`. JavaScript keeps native typed arrays; other targets use portable Float32 buffers and signed-byte storage. The PHP and Python versions prioritize portability and can be considerably slower than native C++ or JavaScript. Do not share a single Model instance concurrently between requests or threads: inference mutates its working buffers and KV cache.
+
 ## Verification
 
 `node tests/inference.cjs` checks the compiled worker against five exact answers captured from the upstream C executable with creativity zero. Browser UI testing was unavailable in the build environment.
+
+After compiling the CLI targets, run their shared inference, argument-validation, and malformed-model checks:
+
+```sh
+python3 tests/targets.py python3 build/python/tiny.py
+python3 tests/targets.py php build/php/index.php
+python3 tests/targets.py ./build/cpp/CliMain
+```
+
+Regenerate the in-app source download after source changes with `python3 scripts/package-source.py`.
 
 ## Behavior and limits
 
@@ -32,7 +79,7 @@ Open http://localhost:8080. Static hosting over HTTPS also works. Serve over HTT
 
 ## Source
 
-`src/Model.hx`: binary reader and transformer. `src/WorkerMain.hx`: worker protocol, character streaming and cancellation. `src/Main.hx`: UI and local chat history. `dist/`: deployable static application.
+`src/Model.hx`: portable binary reader and transformer. `src/FloatBuffer.hx` and `src/ByteBuffer.hx`: target-specific storage. `src/CliMain.hx`: PHP/Python/C++ runner. `src/WorkerMain.hx`: worker protocol, character streaming and cancellation. `src/Main.hx`: UI and local chat history. `dist/`: deployable static application.
 
 ## Attribution
 
