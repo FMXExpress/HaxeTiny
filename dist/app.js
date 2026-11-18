@@ -580,16 +580,19 @@ class Main {
 		let _g1 = Main.sessions.length;
 		while(_g < _g1) {
 			let i = _g++;
-			let index = i;
+			let session = Main.sessions[i];
 			let b = window.document.createElement("button");
-			b.className = "history-item";
-			b.textContent = "◌  " + Std.string(Main.sessions[i].title);
+			b.className = "history-item" + (i == Main.current ? " active" : "");
+			if(i == Main.current) {
+				b.setAttribute("aria-current","true");
+			}
+			b.textContent = "◌  " + session.title;
 			b.onclick = function(_) {
 				Main.reset();
-				Main.current = index;
-				Main.turns = Main.sessions[index].turns.copy();
+				Main.current = Main.sessions.indexOf(session);
+				Main.turns = session.turns.slice();
 				Main.el("welcome").hidden = true;
-				Main.text("chatTitle",Main.sessions[index].title);
+				Main.text("chatTitle",session.title);
 				let _g = 0;
 				let _g1 = Main.turns;
 				while(_g < _g1.length) {
@@ -597,6 +600,7 @@ class Main {
 					++_g;
 					Main.add(t.role,t.text);
 				}
+				Main.renderHistory();
 				Main.scroll();
 			};
 			Main.el("history").appendChild(b);

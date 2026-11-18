@@ -4,9 +4,11 @@ import js.html.TextAreaElement;
 import js.html.InputElement;
 import js.html.ButtonElement;
 import js.html.Worker;
+private typedef ChatTurn = { var role:String; var text:String; }
+private typedef ChatSession = { var title:String; var turns:Array<ChatTurn>; }
 class Main {
  static var voice=new RobotVoice();static var voiceEnabled=false;static var speaking:Element;
- static var worker:Worker; static var ready=false;static var busy=false;static var reply:Element;static var answer='';static var turns:Array<Dynamic>=[];static var sessions:Array<Dynamic>=[];static var current=-1;
+ static var worker:Worker; static var ready=false;static var busy=false;static var reply:Element;static var answer='';static var turns:Array<ChatTurn>=[];static var sessions:Array<ChatSession>=[];static var current=-1;
  static function el(id:String):Element return Browser.document.getElementById(id);
  static function text(id:String,s:String) el(id).textContent=s;
  static function main(){
@@ -46,7 +48,27 @@ class Main {
  static function ask(){if(!ready||busy)return;voice.stop();if(voiceEnabled)voice.unlock();var input:TextAreaElement=cast el('prompt');var q=Model.clean(input.value);if(q.length==0){notice('Use a short question with printable English characters.');return;}notice('');el('welcome').hidden=true;if(turns.length==0)text('chatTitle',q);turns.push({role:'user',text:q});add('user',q);input.value='';text('count','0 / 72');reply=add('assistant','Thinking…');answer='';busy=true;controls();scroll();worker.postMessage({type:'ask',text:q,creativity:Std.parseInt(cast(el('creativity'),InputElement).value)});}
  static function finish(note:String){if(!busy)return;busy=false;reply.textContent=answer.length>0?answer:(note==null?'No answer generated.':note);if(note!=null&&answer.length>0){var n=Browser.document.createDivElement();n.className='message-label';n.textContent=note;reply.parentElement.appendChild(n);}turns.push({role:'assistant',text:reply.textContent});text('activityState','IDLE');controls();save();scroll();if(note==null&&answer.length>0&&voiceEnabled)playVoice(answer,reply);}
  static function save(){var item={title:turns[0].text,turns:turns};if(current<0){sessions.unshift(item);current=0;}else sessions[current]=item;if(sessions.length>20)sessions=sessions.slice(0,20);try{Browser.window.localStorage.setItem('tiny-sessions',haxe.Json.stringify(sessions));}catch(_:Dynamic){notice('History could not be saved on this device.');}renderHistory();}
- static function renderHistory(){el('history').innerHTML='';for(i in 0...sessions.length){var index=i;var b=Browser.document.createButtonElement();b.className='history-item';b.textContent='◌  '+sessions[i].title;b.onclick=function(_){reset();current=index;turns=sessions[index].turns.copy();el('welcome').hidden=true;text('chatTitle',sessions[index].title);for(t in turns)add(t.role,t.text);scroll();};el('history').appendChild(b);}}
+ static function renderHistory(){
+  el('history').innerHTML='';
+  for(i in 0...sessions.length){
+   var session=sessions[i];
+   var b=Browser.document.createButtonElement();
+   b.className='history-item'+(i==current?' active':'');
+   if(i==current)b.setAttribute('aria-current','true');
+   b.textContent='◌  '+session.title;
+   b.onclick=function(_){
+    // reset() can save an in-progress conversation and reorder the sidebar.
+    reset();
+    current=sessions.indexOf(session);
+    turns=session.turns.copy();
+    el('welcome').hidden=true;
+    text('chatTitle',session.title);
+    for(t in turns)add(t.role,t.text);
+    renderHistory();scroll();
+   };
+   el('history').appendChild(b);
+  }
+ }
  static function reset(){voice.stop();if(busy){worker.postMessage({type:'stop'});finish('Stopped');}turns=[];current=-1;el('messages').innerHTML='';el('welcome').hidden=false;text('chatTitle','New conversation');notice('');cast(el('prompt'),TextAreaElement).focus();}
  static function playVoice(content:String,?element:Element){
   voice.stop();
