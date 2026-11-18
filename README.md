@@ -24,6 +24,14 @@ python3 -m http.server 8080 --directory dist
 
 Open http://localhost:8080. Static hosting over HTTPS also works. Serve over HTTP rather than opening index.html as a file; browsers restrict worker and fetch access from file URLs. No haxelib dependencies. Generated JavaScript is checked in, so the dist directory runs without installing Haxe.
 
+## Retro robot voice (browser)
+
+Click **Test voice** above the chat composer to hear the PC-speaker-style chatter. Switch **Robot voice: On** to play each completed answer with word highlighting. Adjust Volume or use **Stop voice**; any key, a new question/conversation, model loading, or hiding the tab also stops playback. Audio is off initially and unlocked by a click, as required by browsers.
+
+This is a Haxe/Web Audio port of the letter-to-sound rules in TINY.C: alternating square-wave vowel pitches, randomized high-frequency hisses, consonant clicks/hums, punctuation pauses, and falling sentence pitch. It is robot chatter, not intelligible text-to-speech. No speech service, recordings, or extra model is used. Browser timing and speakers will make it sound different from physical DOS hardware. The voice is browser-only; PHP, Python, and native C++ remain text runners.
+
+`node tests/voice.cjs` validates the compiled scheduler using a fake Web Audio clock. Listening/visual browser verification was unavailable in the build environment.
+
 ## PHP, Python, and C++
 
 Run these commands from the repository root. Each runner loads `dist/TINY.BIN` by default, accepts a question as an argument, or reads one question per line from stdin. These targets provide a command-line interface and reusable model engine; the browser chat UI remains JavaScript-only.

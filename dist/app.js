@@ -26,6 +26,243 @@ class HxOverrides {
 	}
 }
 HxOverrides.__name__ = true;
+class RobotVoice {
+	constructor() {
+		this.revision = 0;
+		this.timers = [];
+		this.nodes = [];
+		this.onStop = function() {
+		};
+		this.volume = 0.08;
+		this.playing = false;
+	}
+	set_volume(value) {
+		this.volume = Math.max(0,Math.min(0.2,value));
+		if(this.master != null) {
+			this.master.gain.value = this.volume;
+		}
+		return this.volume;
+	}
+	unlock() {
+		try {
+			if(this.context == null) {
+				let constructor = window.AudioContext || window.webkitAudioContext;
+				if(constructor == null) {
+					return false;
+				}
+				this.context = new constructor();
+				this.master = this.context.createGain();
+				this.master.gain.value = this.volume;
+				this.master.connect(this.context.destination);
+			}
+			if(this.context.state == "suspended") {
+				this.context.resume().catch(function() {});
+			}
+			return this.context.state != "closed";
+		} catch( _g ) {
+			return false;
+		}
+	}
+	stop() {
+		this.revision++;
+		let _g = 0;
+		let _g1 = this.timers;
+		while(_g < _g1.length) {
+			let timer = _g1[_g];
+			++_g;
+			timer.stop();
+		}
+		this.timers = [];
+		let _g2 = 0;
+		let _g3 = this.nodes;
+		while(_g2 < _g3.length) {
+			let node = _g3[_g2];
+			++_g2;
+			try {
+				node.stop();
+			} catch( _g ) {
+			}
+			try {
+				node.disconnect();
+			} catch( _g ) {
+			}
+		}
+		this.nodes = [];
+		let wasPlaying = this.playing;
+		this.playing = false;
+		if(wasPlaying) {
+			this.onStop();
+		}
+	}
+	play(text,onWord) {
+		this.stop();
+		if(!this.unlock()) {
+			return false;
+		}
+		this.playing = true;
+		let id = this.revision;
+		let _gthis = this;
+		let start = function() {
+			if(id != _gthis.revision) {
+				return;
+			}
+			try {
+				_gthis.schedule(text,onWord,id);
+			} catch( _g ) {
+				_gthis.stop();
+			}
+		};
+		if(this.context.state == "running") {
+			start();
+		} else {
+			this.context.resume().then(function(_) {
+				start();
+				return null;
+			},function(_) {
+				_gthis.stop();
+				return null;
+			});
+		}
+		return true;
+	}
+	schedule(text,onWord,id) {
+		this.playing = true;
+		let start = this.context.currentTime + 0.03;
+		let offset = 0.;
+		let wordStart = 0;
+		let _gthis = this;
+		let _g = 0;
+		let _g1 = text.length;
+		while(_g < _g1) {
+			let i = _g++;
+			let c = text.charAt(i).toLowerCase();
+			if(c != " " && (i == 0 || text.charAt(i - 1) == " ")) {
+				wordStart = i;
+				let end = i;
+				while(end < text.length && text.charAt(end) != " ") ++end;
+				if(onWord != null) {
+					let at = i;
+					let length = end - i;
+					this.later(function() {
+						if(id == _gthis.revision) {
+							onWord(at,length);
+						}
+					},offset + 0.03);
+				}
+			}
+			let shift = (115 - (30 * wordStart / (text.length + 1) | 0)) / 100;
+			switch(c) {
+			case " ":
+				offset += 0.045;
+				break;
+			case ",":case "-":
+				offset += 0.110;
+				break;
+			case "!":case ".":case ":":case "?":
+				offset += 0.200;
+				break;
+			case "a":
+				this.buzz(730,1090,64,shift,start + offset);
+				offset += 0.064;
+				break;
+			case "e":
+				this.buzz(530,1840,56,shift,start + offset);
+				offset += 0.056;
+				break;
+			case "b":case "d":case "g":
+				this.buzz(180,260,12,shift,start + offset);
+				offset += 0.022;
+				break;
+			case "f":case "h":case "j":case "v":
+				this.hiss(30,start + offset);
+				offset += 0.030;
+				break;
+			case "m":case "n":
+				this.buzz(210,300,40,shift,start + offset);
+				offset += 0.040;
+				break;
+			case "o":
+				this.buzz(570,840,64,shift,start + offset);
+				offset += 0.064;
+				break;
+			case "k":case "p":case "q":case "t":
+				this.tone(3200,2,start + offset);
+				offset += 0.020;
+				break;
+			case "u":
+				this.buzz(320,870,56,shift,start + offset);
+				offset += 0.056;
+				break;
+			case "l":case "r":case "w":
+				this.buzz(400,1100,36,shift,start + offset);
+				offset += 0.036;
+				break;
+			case "c":case "s":case "x":case "z":
+				this.hiss(46,start + offset);
+				offset += 0.046;
+				break;
+			case "i":case "y":
+				this.buzz(300,2290,52,shift,start + offset);
+				offset += 0.052;
+				break;
+			default:
+				let digit = HxOverrides.cca(c,0) - 48;
+				if(digit >= 0 && digit <= 9) {
+					this.buzz(420 + digit * 60,900 + digit * 90,70,shift,start + offset);
+					offset += 0.072;
+				} else {
+					offset += 0.020;
+				}
+			}
+		}
+		this.later(function() {
+			if(id == _gthis.revision) {
+				_gthis.stop();
+			}
+		},offset + 0.05);
+	}
+	later(callback,seconds) {
+		this.timers.push(haxe_Timer.delay(callback,seconds * 1000 | 0));
+	}
+	oscillator(at,ms) {
+		let node = this.context.createOscillator();
+		node.type = "square";
+		node.connect(this.master);
+		node.start(at);
+		node.stop(at + ms / 1000);
+		this.nodes.push(node);
+		return node;
+	}
+	buzz(f1,f2,ms,shift,at) {
+		let duration = (Math.ceil(ms / 4) | 0) * 4;
+		let node = this.oscillator(at,duration);
+		let t = 0;
+		while(t < duration) {
+			node.frequency.setValueAtTime(f1 * shift | 0,at + t / 1000);
+			node.frequency.setValueAtTime(f2 * shift | 0,at + (t + 2) / 1000);
+			t += 4;
+		}
+	}
+	hiss(ms,at) {
+		let node = this.oscillator(at,ms);
+		let _g = 0;
+		let _g1 = ms;
+		while(_g < _g1) {
+			let t = _g++;
+			let node1 = node.frequency;
+			let tmp = 2500 + Std.random(4500);
+			node1.setValueAtTime(tmp,at + t / 1000);
+		}
+	}
+	tone(hz,ms,at) {
+		let node = this.oscillator(at,ms);
+		node.frequency.setValueAtTime(hz,at);
+	}
+}
+RobotVoice.__name__ = true;
+Object.assign(RobotVoice.prototype, {
+	__class__: RobotVoice
+});
 class Main {
 	static el(id) {
 		return window.document.getElementById(id);
@@ -34,6 +271,46 @@ class Main {
 		Main.el(id).textContent = s;
 	}
 	static main() {
+		Main.voice.onStop = function() {
+			Main.el("voiceStop").hidden = true;
+			Main.text("voiceState","");
+			if(Main.speaking != null) {
+				Main.speaking.textContent = Main.speaking.getAttribute("data-spoken-text");
+				Main.speaking = null;
+			}
+		};
+		Main.el("voiceToggle").onclick = function(_) {
+			if(!Main.voiceEnabled && !Main.voice.unlock()) {
+				Main.notice("Web Audio is unavailable in this browser.");
+				return;
+			}
+			Main.voiceEnabled = !Main.voiceEnabled;
+			if(!Main.voiceEnabled) {
+				Main.voice.stop();
+			}
+			Main.text("voiceToggle",Main.voiceEnabled ? "Robot voice: On" : "Robot voice: Off");
+			Main.el("voiceToggle").setAttribute("aria-pressed",Std.string(Main.voiceEnabled));
+		};
+		Main.el("voiceTest").onclick = function(_) {
+			Main.playVoice("Hello, I am Tiny. A little robot in your browser.");
+		};
+		Main.el("voiceStop").onclick = function(_) {
+			Main.voice.stop();
+		};
+		let volume = Main.el("voiceVolume");
+		volume.oninput = function(_) {
+			Main.voice.set_volume(parseFloat(volume.value) / 100);
+		};
+		window.document.addEventListener("keydown",function(_) {
+			if(Main.voice.playing) {
+				Main.voice.stop();
+			}
+		});
+		window.document.addEventListener("visibilitychange",function(_) {
+			if(window.document.hidden) {
+				Main.voice.stop();
+			}
+		});
 		Main.el("inspectorToggle").onclick = function(_) {
 			window.document.body.classList.toggle("show-inspector");
 		};
@@ -176,6 +453,7 @@ class Main {
 		Main.controls();
 	}
 	static beginLoad() {
+		Main.voice.stop();
 		if(Main.busy) {
 			Main.worker.postMessage({ type : "stop"});
 			Main.finish("Stopped for model loading");
@@ -231,6 +509,10 @@ class Main {
 		if(!Main.ready || Main.busy) {
 			return;
 		}
+		Main.voice.stop();
+		if(Main.voiceEnabled) {
+			Main.voice.unlock();
+		}
 		let input = Main.el("prompt");
 		let q = Model.clean(input.value);
 		if(q.length == 0) {
@@ -270,6 +552,9 @@ class Main {
 		Main.controls();
 		Main.save();
 		Main.scroll();
+		if(note == null && Main.answer.length > 0 && Main.voiceEnabled) {
+			Main.playVoice(Main.answer,Main.reply);
+		}
 	}
 	static save() {
 		let item = { title : Main.turns[0].text, turns : Main.turns};
@@ -318,6 +603,7 @@ class Main {
 		}
 	}
 	static reset() {
+		Main.voice.stop();
 		if(Main.busy) {
 			Main.worker.postMessage({ type : "stop"});
 			Main.finish("Stopped");
@@ -329,6 +615,37 @@ class Main {
 		Main.text("chatTitle","New conversation");
 		Main.notice("");
 		(js_Boot.__cast(Main.el("prompt") , HTMLTextAreaElement)).focus();
+	}
+	static playVoice(content,element) {
+		Main.voice.stop();
+		if(!Main.voice.unlock()) {
+			Main.notice("Web Audio is unavailable in this browser.");
+			return;
+		}
+		Main.speaking = element;
+		if(element != null) {
+			element.setAttribute("data-spoken-text",content);
+		}
+		let ok = Main.voice.play(content,function(start,length) {
+			if(element == null) {
+				return;
+			}
+			element.textContent = "";
+			element.appendChild(window.document.createTextNode(HxOverrides.substr(content,0,start)));
+			let highlight = window.document.createElement("mark");
+			highlight.className = "spoken-word";
+			highlight.textContent = HxOverrides.substr(content,start,length);
+			element.appendChild(highlight);
+			let ok = HxOverrides.substr(content,start + length,null);
+			element.appendChild(window.document.createTextNode(ok));
+		});
+		if(ok) {
+			Main.el("voiceStop").hidden = false;
+			Main.text("voiceState","Robot chatter · press any key to stop");
+		} else {
+			Main.voice.stop();
+			Main.notice("Audio could not start. Try Test voice again.");
+		}
 	}
 	static scroll() {
 		Main.el("conversation").scrollTop = Main.el("conversation").scrollHeight;
@@ -702,6 +1019,13 @@ class Std {
 		}
 		return v;
 	}
+	static random(x) {
+		if(x <= 0) {
+			return 0;
+		} else {
+			return Math.floor(Math.random() * x);
+		}
+	}
 }
 Std.__name__ = true;
 class StringTools {
@@ -750,6 +1074,35 @@ haxe_Exception.__name__ = true;
 haxe_Exception.__super__ = Error;
 Object.assign(haxe_Exception.prototype, {
 	__class__: haxe_Exception
+});
+class haxe_Timer {
+	constructor(time_ms) {
+		let me = this;
+		this.id = setInterval(function() {
+			me.run();
+		},time_ms);
+	}
+	stop() {
+		if(this.id == null) {
+			return;
+		}
+		clearInterval(this.id);
+		this.id = null;
+	}
+	run() {
+	}
+	static delay(f,time_ms) {
+		let t = new haxe_Timer(time_ms);
+		t.run = function() {
+			t.stop();
+			f();
+		};
+		return t;
+	}
+}
+haxe_Timer.__name__ = true;
+Object.assign(haxe_Timer.prototype, {
+	__class__: haxe_Timer
 });
 class haxe_ValueException extends haxe_Exception {
 	constructor(value,previous,native) {
@@ -1085,6 +1438,8 @@ if( String.fromCodePoint == null ) String.fromCodePoint = function(c) { return c
 	var Enum = { };
 }
 js_Boot.__toStr = ({ }).toString;
+Main.voice = new RobotVoice();
+Main.voiceEnabled = false;
 Main.ready = false;
 Main.busy = false;
 Main.answer = "";
