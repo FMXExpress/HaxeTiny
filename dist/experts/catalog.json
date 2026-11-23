@@ -1,0 +1,707 @@
+{
+  "version": 1,
+  "source": "https://github.com/FMXExpress/PasTiny",
+  "commit": "7277199b701733cb8b2630f832b34d17d52c24b0",
+  "experts": [
+    {
+      "id": 1,
+      "name": "DOS.BIN",
+      "title": "DOS Guide",
+      "keyword": "dos",
+      "sha256": "b646c4ad433328b894078be9643d01152dd2d4637b2352301c0172f679588895"
+    },
+    {
+      "id": 2,
+      "name": "PASCAL.BIN",
+      "title": "Turbo Pascal Coach",
+      "keyword": "pascal",
+      "sha256": "9c5f72233522cc190709f92933565d288ef1e5a4ff05e45b8e5615419aeb10d1"
+    },
+    {
+      "id": 3,
+      "name": "PCBENCH.BIN",
+      "title": "PC Workbench",
+      "keyword": "workbench",
+      "sha256": "85d6054b1e60cabe01a8f72b481fa74b03c0035ef5cb6fd4cee0d848c57ef8c5"
+    },
+    {
+      "id": 4,
+      "name": "PATHS.BIN",
+      "title": "File and Path Terms",
+      "keyword": "pathname",
+      "sha256": "c47fa21b23642303909c3c6ff45fef65ccf722dc16d0bcdcc666499dc3968e4d"
+    },
+    {
+      "id": 5,
+      "name": "DOSMEM.BIN",
+      "title": "DOS memory terms",
+      "keyword": "memory",
+      "sha256": "3f319391bfc32ead562e5617b51dad6fb1b317b3d82c06292f4ab788b7efe901"
+    },
+    {
+      "id": 6,
+      "name": "FLOPPY.BIN",
+      "title": "Floppy disk terms",
+      "keyword": "floppy",
+      "sha256": "e2ad1243d59c4473e19029527f29236d2f9e832083dc48bd749dca90d5a1b188"
+    },
+    {
+      "id": 7,
+      "name": "FATVOL.BIN",
+      "title": "FAT Volume Terms",
+      "keyword": "fat",
+      "sha256": "e67b8bb7ae62e5290ae86287fead07efbd63724bf485d667ec97287967acc989"
+    },
+    {
+      "id": 8,
+      "name": "STARTUP.BIN",
+      "title": "DOS Startup Files",
+      "keyword": "autoexec",
+      "sha256": "b24d8ef837d11b19efd410205187d1bb2650bd3595b1aef38411fdbd54e8bfe5"
+    },
+    {
+      "id": 9,
+      "name": "BATCH.BIN",
+      "title": "Batch file vocabulary",
+      "keyword": "batch",
+      "sha256": "04b08de0acd45dfd17ae978c6f2611d7079f3263d6f6abd44a5bf6c2d6c832eb"
+    },
+    {
+      "id": 10,
+      "name": "TEXTFILE.BIN",
+      "title": "Text file conventions",
+      "keyword": "crlf",
+      "sha256": "c055fc7baf25719b12899ed1625ae98e93cc7ee93fbdf9398316c3333b27bed3"
+    },
+    {
+      "id": 11,
+      "name": "KEYBOARD.BIN",
+      "title": "Keyboard terminology",
+      "keyword": "keyboard",
+      "sha256": "a0042cfbed2728d83cf4170a00cf2edc699d8a7488bc71041081ccafdd46eab7"
+    },
+    {
+      "id": 12,
+      "name": "BIOS.BIN",
+      "title": "BIOS setup glossary",
+      "keyword": "bios",
+      "sha256": "7286bd3d38c4d22cb39bd364384bbe9c1ecd2a4f1d5dc46984ac66202c2a7310"
+    },
+    {
+      "id": 13,
+      "name": "DISPADA.BIN",
+      "title": "Display adapters",
+      "keyword": "mda",
+      "sha256": "1c1eba746c4e8571258b267a6c4fedb474a2ac58dc93debff1d9e52f2482798f"
+    },
+    {
+      "id": 14,
+      "name": "TEXTSCR.BIN",
+      "title": "Text screen layout",
+      "keyword": "cursor",
+      "sha256": "f808fa2734a7a9eb597926e1cdb35ffb53210d1f5cde79dd21fd187fefa2ac2c"
+    },
+    {
+      "id": 15,
+      "name": "BITMAP.BIN",
+      "title": "Bitmap graphics",
+      "keyword": "bitmap",
+      "sha256": "3f67a30aa2d2fbbc26b80f640ab18e65a0be10ecf406c2d6687d38dc4bb53268"
+    },
+    {
+      "id": 16,
+      "name": "PRINTER.BIN",
+      "title": "Printer desk",
+      "keyword": "printer",
+      "sha256": "2fa1dad893894f2c92af6ff4a014ec6044626db0f795e6ec4595967cf4782101"
+    },
+    {
+      "id": 17,
+      "name": "JOYSTICK.BIN",
+      "title": "Joystick Desk",
+      "keyword": "joystick",
+      "sha256": "99491491b93ba1904282cdd243a64fed1a4edfd0673c4fc5c4032faf80a3bb57"
+    },
+    {
+      "id": 18,
+      "name": "PCAUDIO.BIN",
+      "title": "PC Audio Devices",
+      "keyword": "midi",
+      "sha256": "e2f995912d8e7c5a1f37bc1d3ee30bc20666750245906185cd7fec642b91d241"
+    },
+    {
+      "id": 19,
+      "name": "SERIAL.BIN",
+      "title": "Serial port glossary",
+      "keyword": "baud",
+      "sha256": "da21a7a4b6a670ef2bd8f0a17984b348583c0240b5858bd46a802cc3f34c9aa7"
+    },
+    {
+      "id": 20,
+      "name": "EXPBUS.BIN",
+      "title": "PC expansion slots",
+      "keyword": "isa",
+      "sha256": "00bf41ad50bbc9dd89851159b3b608953fd488bbdf5470a04e6cf7bbc28d263f"
+    },
+    {
+      "id": 21,
+      "name": "SCALAR.BIN",
+      "title": "Pascal scalar types",
+      "keyword": "declaration",
+      "sha256": "ce2bfb8767424df549840fe247c301fc51f9233de5f20e64a11d899a05371f40"
+    },
+    {
+      "id": 22,
+      "name": "FLOW.BIN",
+      "title": "Pascal control flow",
+      "keyword": "snippet",
+      "sha256": "607030790b9939875973407a3ab125bd5b12f4f635438ca37f60f2b4dcae132d"
+    },
+    {
+      "id": 23,
+      "name": "RECORDS.BIN",
+      "title": "Pascal records and arrays",
+      "keyword": "record",
+      "sha256": "2ba511289f4e0431041560e8733b18152ae1e5a1a58dd13cc5bffd0c30765b40"
+    },
+    {
+      "id": 24,
+      "name": "ROUTINES.BIN",
+      "title": "Pascal routines",
+      "keyword": "procedure",
+      "sha256": "3559ef157bddff8c4a38f1a7dffcdd1fd26580f0683afab8353823b3091f9131"
+    },
+    {
+      "id": 25,
+      "name": "PASFILES.BIN",
+      "title": "Pascal file types",
+      "keyword": "typed",
+      "sha256": "f05e7d9877924419abba08a5c6c52c08c4b5b70a6d5bfed10f83af10adba9b29"
+    },
+    {
+      "id": 26,
+      "name": "UNITS.BIN",
+      "title": "Pascal units",
+      "keyword": "interface",
+      "sha256": "e2ad1683939fb47ec04af60fe203d39c5b6dde2838f02d0edd0b012730c316fa"
+    },
+    {
+      "id": 27,
+      "name": "COMPILE.BIN",
+      "title": "Compiler Messages",
+      "keyword": "diagnostic",
+      "sha256": "062e5431084ceffb96074a8e48d1a91aeb45db1573a8645afd26942489064072"
+    },
+    {
+      "id": 28,
+      "name": "DEBUGGER.BIN",
+      "title": "Debugger Vocabulary",
+      "keyword": "breakpoint",
+      "sha256": "a77901f81b8f616c2b4a0702267a1ce38a40644a61b8fb832d278ed3cd1da52f"
+    },
+    {
+      "id": 29,
+      "name": "NUMBASE.BIN",
+      "title": "Number notation",
+      "keyword": "binary",
+      "sha256": "c9be39fe71d6bc93ee81187b27e6e861ee7c970181c67c70da6c8c78ec18f06b"
+    },
+    {
+      "id": 30,
+      "name": "BOOLLOG.BIN",
+      "title": "Boolean logic",
+      "keyword": "xor",
+      "sha256": "52f20dc2a6c855b617f3942f678b60146e47a9c1a6d1bafa66a7a503beafb502"
+    },
+    {
+      "id": 31,
+      "name": "SORTING.BIN",
+      "title": "Sorting vocabulary",
+      "keyword": "sorting",
+      "sha256": "c33ff2f93b762f270681cc7444cf06dcc0871b4151359b0157e59095e6f44c49"
+    },
+    {
+      "id": 32,
+      "name": "DATASTR.BIN",
+      "title": "Data structures",
+      "keyword": "structure",
+      "sha256": "60c1a41011fc0c8268e1c45f73038d19c83e4c0e5f08b60c8983974c445f6a88"
+    },
+    {
+      "id": 33,
+      "name": "ARCHIVES.BIN",
+      "title": "Archive formats",
+      "keyword": "zip",
+      "sha256": "4995427df2cfddfd8a3be402fe2f958c0fcadc9bc4dce812ff89108dc023cce1"
+    },
+    {
+      "id": 34,
+      "name": "FORMULAS.BIN",
+      "title": "Spreadsheet formulas",
+      "keyword": "spreadsheets",
+      "sha256": "fbe86321e818e1c8c27d5948c39a6c9202ab283c6deb84877542f7b5bdf404b9"
+    },
+    {
+      "id": 35,
+      "name": "DATABASE.BIN",
+      "title": "Database vocabulary",
+      "keyword": "database",
+      "sha256": "7cb6f3dec89f8c74fbefeab0519ce138401af2c4859248a201b8ff31749ff8de"
+    },
+    {
+      "id": 36,
+      "name": "EDITNAV.BIN",
+      "title": "Text editor navigation",
+      "keyword": "editor",
+      "sha256": "80854fbd0f7aa81a5889dbc3b893ba434f7179adcf31c1df214452d952f53f40"
+    },
+    {
+      "id": 37,
+      "name": "MODEM.BIN",
+      "title": "Modem Desk",
+      "keyword": "atdt",
+      "sha256": "01d30859220ffe0e2521348f155a7711bd2086ba0030e1535e169de958af4a89"
+    },
+    {
+      "id": 38,
+      "name": "TERMINAL.BIN",
+      "title": "BBS and Terminal",
+      "keyword": "sysop",
+      "sha256": "bffab3b1c19c0afe502213c19d7c711837d59174c13823ace6d2b01b1b49c9d3"
+    },
+    {
+      "id": 39,
+      "name": "WORDSTAR.BIN",
+      "title": "WordStar",
+      "keyword": "wordstar",
+      "sha256": "ba47f8bef07adb7a9c66bba7d64142a5cc4baf19a0f052d2bac2b1f10659ae8e"
+    },
+    {
+      "id": 40,
+      "name": "LOTUS123.BIN",
+      "title": "Lotus 1-2-3",
+      "keyword": "lotus",
+      "sha256": "ade906dc9d22e0f941d08b10a81074911e926621e41a49cf2425ec5f8316715f"
+    },
+    {
+      "id": 41,
+      "name": "WORDS.BIN",
+      "title": "Word Bench",
+      "keyword": "define",
+      "sha256": "22933c9fc0823b6ff89b862bfbe42fec4aa6f179315c04d70ef12c2a6da1beb8"
+    },
+    {
+      "id": 42,
+      "name": "SPELL.BIN",
+      "title": "Spelling Helper",
+      "keyword": "spelling",
+      "sha256": "17a8f043abab3af0606a89644c5312bef1b828a8c8f64b088f7fe07b08b14011"
+    },
+    {
+      "id": 43,
+      "name": "CONFUSE.BIN",
+      "title": "Confused Words",
+      "keyword": "confused",
+      "sha256": "42610e0baf03516c5291a8717b7cbe9e281c078caecd33845552f962d71fdc40"
+    },
+    {
+      "id": 44,
+      "name": "GRAMMAR.BIN",
+      "title": "Grammar Terms",
+      "keyword": "grammar",
+      "sha256": "1357b9db36ce0d6e224613c0378eda1403779f768f33f4f644de26890813accb"
+    },
+    {
+      "id": 45,
+      "name": "PUNCT.BIN",
+      "title": "Punctuation",
+      "keyword": "punctuation",
+      "sha256": "4c94dcbac2a3ea16ca8b40419228eb0208977d041a3b2ac5a1452d970c82bd76"
+    },
+    {
+      "id": 46,
+      "name": "SYNONYM.BIN",
+      "title": "Synonyms",
+      "keyword": "synonym",
+      "sha256": "02c0d8a908c45c56931c73c65e3e1f95d6e27f4f79c4dba59797175ef0efec3e"
+    },
+    {
+      "id": 47,
+      "name": "ANTONYM.BIN",
+      "title": "Antonyms",
+      "keyword": "antonym",
+      "sha256": "83daefb552dc27e862d20e3f5ac802ab44ad174ba4f9848dd22f8c4239ebd68a"
+    },
+    {
+      "id": 48,
+      "name": "ABBREV.BIN",
+      "title": "Abbreviations",
+      "keyword": "az",
+      "sha256": "33b6e0bf9341885d3ec5bf2381bb43366ef42a7f6dad781cd5e457f3e98a1cb2"
+    },
+    {
+      "id": 49,
+      "name": "IDIOM.BIN",
+      "title": "Idioms",
+      "keyword": "idiom",
+      "sha256": "6f77aab68b903d07f99cf06d01204e48c9331ae79e984fa26f3bb47fc59ee526"
+    },
+    {
+      "id": 50,
+      "name": "ORIGINS.BIN",
+      "title": "Word origins",
+      "keyword": "etymology",
+      "sha256": "b6991f2039131b3df0817d021b03135e1ecc8233fbeb3085d4e9474534cdbc57"
+    },
+    {
+      "id": 51,
+      "name": "NATURE.BIN",
+      "title": "Pocket Naturalist",
+      "keyword": "animal",
+      "sha256": "8e4e5d66bcafa9a919abe06277e0c8eff22a558b16c9fbf84f1fa77a41ac0f03"
+    },
+    {
+      "id": 52,
+      "name": "MAMMALS.BIN",
+      "title": "Mammals",
+      "keyword": "elephant",
+      "sha256": "d3b362c60f0d09dd8bca0ef795b98cc3160d2ca7d6dba6562a44be8c8ff9a9a8"
+    },
+    {
+      "id": 53,
+      "name": "BIRDS.BIN",
+      "title": "Birds",
+      "keyword": "penguin",
+      "sha256": "ccc65d71cc4f1e02e622bd2d4289faef11a24648f302b602442ca03c099f8061"
+    },
+    {
+      "id": 54,
+      "name": "REPTILES.BIN",
+      "title": "Reptiles",
+      "keyword": "tortoise",
+      "sha256": "953c533a7ad067e1395c4ecc145f2ef254f6f1db84f9d16a85ea641d4c36065b"
+    },
+    {
+      "id": 55,
+      "name": "AMPHIB.BIN",
+      "title": "Amphibians",
+      "keyword": "axolotl",
+      "sha256": "f87403dbad5765bb21f5172d60d923e1d24dc56cc001355fb156ac55ac6d0e59"
+    },
+    {
+      "id": 56,
+      "name": "FISH.BIN",
+      "title": "Fish",
+      "keyword": "anemonefish",
+      "sha256": "a262ab9ce2af13c6e97a701cd220e6665a174158571ae1afcb411d0f8f35337d"
+    },
+    {
+      "id": 57,
+      "name": "INSECTS.BIN",
+      "title": "Insects",
+      "keyword": "butterflies",
+      "sha256": "109517e8edd48fba3de1aa891bd106b67db8c58c5a4d97da58a8ee33575cc8aa"
+    },
+    {
+      "id": 58,
+      "name": "SPIDERS.BIN",
+      "title": "Spiders",
+      "keyword": "chelicera",
+      "sha256": "8d624149d8932678d29da850629f8d3d97c9dc393d3427609b08451ec531536b"
+    },
+    {
+      "id": 59,
+      "name": "TREES.BIN",
+      "title": "Trees",
+      "keyword": "bark",
+      "sha256": "4110239ff66da00043feccd4a31fe535b33c5ed50f29fb81efd6c2543b5c6d31"
+    },
+    {
+      "id": 60,
+      "name": "FLOWERS.BIN",
+      "title": "Flowers",
+      "keyword": "anther",
+      "sha256": "9b79ce5513985e93cb436a0719645809b4ee4b6e89ed446c735c97f87fae7795"
+    },
+    {
+      "id": 61,
+      "name": "SOLARSYS.BIN",
+      "title": "Solar system",
+      "keyword": "moon",
+      "sha256": "ba3ae8d78a3f02a3105d20120c067571d3137a5170edf3fd5ebc6b9495f674bb"
+    },
+    {
+      "id": 62,
+      "name": "STARSKY.BIN",
+      "title": "Stars and Sky",
+      "keyword": "polaris",
+      "sha256": "e0ec9cb87dd75025c502b3491a38f66676fac9645becb494eeb597fcb6957129"
+    },
+    {
+      "id": 63,
+      "name": "WEATHER.BIN",
+      "title": "Weather",
+      "keyword": "fog",
+      "sha256": "c346faada9b2c3d8dc018283bee1dd1e9e7627d9df512db52124aa1abcd9981f"
+    },
+    {
+      "id": 64,
+      "name": "GEOLOGY.BIN",
+      "title": "Rocks and geology",
+      "keyword": "geology",
+      "sha256": "24ab8bbf9738802d2e299f94bc9a5d205b8e6f1f19ba21ac992d07f9f0cf5a89"
+    },
+    {
+      "id": 65,
+      "name": "CIRCUITS.BIN",
+      "title": "Electricity",
+      "keyword": "electricity",
+      "sha256": "e93dbcd83be7db5daf2ca416c822755e5f9d80896ee7278d8c145a1c1816017b"
+    },
+    {
+      "id": 66,
+      "name": "FORCES.BIN",
+      "title": "Forces and motion",
+      "keyword": "inertia",
+      "sha256": "72a4c1f53a7d064861c36f0f7f89c7e57a2548413c3c11749c7eaab4eae54b32"
+    },
+    {
+      "id": 67,
+      "name": "LIGHT.BIN",
+      "title": "Light",
+      "keyword": "reflection",
+      "sha256": "52b573bae6e3a0124850a27544c7d7933723f0e4927e0163bdde97a83cf59e08"
+    },
+    {
+      "id": 68,
+      "name": "SOUND.BIN",
+      "title": "Sound",
+      "keyword": "pitch",
+      "sha256": "dffca23c326207a079c0d4908e5ec3f10ec10d4dc17acfbdf12f2d53d86ebc0f"
+    },
+    {
+      "id": 69,
+      "name": "MATTER.BIN",
+      "title": "Elements and Matter",
+      "keyword": "sodium",
+      "sha256": "f190fdef0e1a0db35f787a36c25cfc79389e344cec83493550027b3eb8c8076a"
+    },
+    {
+      "id": 70,
+      "name": "ANATOMY.BIN",
+      "title": "Human Body",
+      "keyword": "heart",
+      "sha256": "31ee7055412c9208e6c72ddb84416e955cfcf5c282c4f6544b629d8dd55cea83"
+    },
+    {
+      "id": 71,
+      "name": "CAPITALS.BIN",
+      "title": "Countries and Capitals",
+      "keyword": "finland",
+      "sha256": "5ccd0122aa6a8d8c67f4977964fef3d7049ffadb48a2c390e2df991d40186e45"
+    },
+    {
+      "id": 72,
+      "name": "FLAGS.BIN",
+      "title": "Flags",
+      "keyword": "flag",
+      "sha256": "a08487b5cfe62e22d095d09ad8181bc48f3e11d50a988357bc91360017c5d0ff"
+    },
+    {
+      "id": 73,
+      "name": "CONTINNT.BIN",
+      "title": "Continents",
+      "keyword": "continent",
+      "sha256": "6bdbb6ec23d51bb173a092c7a5fac38fc04c5c06c883937209b23411bfc0557a"
+    },
+    {
+      "id": 74,
+      "name": "RIVERS.BIN",
+      "title": "Rivers",
+      "keyword": "river",
+      "sha256": "212368419cbc85ec7c76aeed4b4f18150f08450706c83117d2a75d2b606aeec7"
+    },
+    {
+      "id": 75,
+      "name": "MOUNTAIN.BIN",
+      "title": "Mountains",
+      "keyword": "mountain",
+      "sha256": "63550c32e1acfd570e7f84bb0ea5d24731b5409dc2047b858412bf8b414cb92c"
+    },
+    {
+      "id": 76,
+      "name": "OCEANS.BIN",
+      "title": "Oceans and seas",
+      "keyword": "pacific",
+      "sha256": "96ce5567d51e85ff1fed805fc3e4e88babd99f64d9c68ed5fe430b7feb5d3505"
+    },
+    {
+      "id": 77,
+      "name": "CITIES.BIN",
+      "title": "Cities",
+      "keyword": "osaka",
+      "sha256": "c8d8d8bbed0c7fc005ccf7cf6226123e89d5c92db5c218b58d2d46925b9d7219"
+    },
+    {
+      "id": 78,
+      "name": "LANDMARK.BIN",
+      "title": "Landmarks",
+      "keyword": "eiffel",
+      "sha256": "d4b6b97e4050507bfc54a75228cb3304235382b23b8dd0285ac762761c8abaf9"
+    },
+    {
+      "id": 79,
+      "name": "MAPS.BIN",
+      "title": "Map Reader",
+      "keyword": "legend",
+      "sha256": "47e0c7dcc699882341bcbd94f69c194b293cc3dab8d4527a3ddf3486c675b71c"
+    },
+    {
+      "id": 80,
+      "name": "NAVIGATE.BIN",
+      "title": "Navigation Terms",
+      "keyword": "compass",
+      "sha256": "d591ab1de3a57d72f977ccbc5cf8c57a85ae1ab005e24e05528cb8ad07c4f5d5"
+    },
+    {
+      "id": 81,
+      "name": "EGYPT.BIN",
+      "title": "Ancient Egypt",
+      "keyword": "khufu",
+      "sha256": "84eefc16d0e2c7663866ff231766a6313762409365bcd0196691247f3e250edd"
+    },
+    {
+      "id": 82,
+      "name": "GREECE.BIN",
+      "title": "Ancient Greece",
+      "keyword": "parthenon",
+      "sha256": "64ea2565eaab7fa4b331420cff127637dcbb3eb62bdbcced3b8c1b35ce3b2330"
+    },
+    {
+      "id": 83,
+      "name": "ROME.BIN",
+      "title": "Ancient Rome",
+      "keyword": "aeneid",
+      "sha256": "d29258c24957a129fb4772b1982bbb2ce50ce12814cd71fe357943d658cef0d4"
+    },
+    {
+      "id": 84,
+      "name": "MEDIEVAL.BIN",
+      "title": "Medieval life",
+      "keyword": "medieval",
+      "sha256": "99d3ec876b5b706c21059a47312e093c520aebbf18f54bb064b6863383dd993c"
+    },
+    {
+      "id": 85,
+      "name": "EXPLORE.BIN",
+      "title": "Exploration",
+      "keyword": "voyage",
+      "sha256": "6c011689549ca577601640bc436d7536069a6c537d35ab15f865db714a6f10ce"
+    },
+    {
+      "id": 86,
+      "name": "INVENT.BIN",
+      "title": "Inventions",
+      "keyword": "stethoscope",
+      "sha256": "96fc0c6c39be723263b54e582d21dbbe7d8bf1537e9c6a012a0ab05d52c73cff"
+    },
+    {
+      "id": 87,
+      "name": "COMPUTER.BIN",
+      "title": "Computing history",
+      "keyword": "eniac",
+      "sha256": "aa50e1bba32c5b3d264913dfa06436e1ef2d719261895d89538909f9ecaf6b32"
+    },
+    {
+      "id": 88,
+      "name": "SPACEFLT.BIN",
+      "title": "Spaceflight",
+      "keyword": "sputnik",
+      "sha256": "2758f61065c8b482adb09ab2c1456106064d3017ae8dff9d0b70c14f3c4021e5"
+    },
+    {
+      "id": 89,
+      "name": "TRANSIT.BIN",
+      "title": "Transport History",
+      "keyword": "flyer",
+      "sha256": "e41dd1de307b77a8fdda4949ad9ef6f36fdd3380c03d65bdd4a23a4348e9f430"
+    },
+    {
+      "id": 90,
+      "name": "HISTVOC.BIN",
+      "title": "History vocabulary",
+      "keyword": "chronology",
+      "sha256": "dcd11a5e69e31485db4895f151364843e5763cb9334941d2f0bca5be287305a0"
+    },
+    {
+      "id": 91,
+      "name": "RIDDLES.BIN",
+      "title": "Riddle hints",
+      "keyword": "riddle",
+      "sha256": "7d4b246f22958e3593618af32d2488dfe546536d698ef050482442c6fd5076c4"
+    },
+    {
+      "id": 92,
+      "name": "WORDPLAY.BIN",
+      "title": "Wordplay",
+      "keyword": "palindrome",
+      "sha256": "8b8776c90ed18addd9a4a3aaa787bb93ce7c616bd00fdcd303d98ef7e6a8ba28"
+    },
+    {
+      "id": 93,
+      "name": "CHESS.BIN",
+      "title": "Chess vocabulary",
+      "keyword": "stalemate",
+      "sha256": "d6dc71374f5f53ec97eba3e16830fa5ecd8c7ed025ad91cce1f31a6dce9d5b96"
+    },
+    {
+      "id": 94,
+      "name": "ADVENT.BIN",
+      "title": "Adventure vocabulary",
+      "keyword": "adventure",
+      "sha256": "e56102523cdea470b50ebb7de6b9e530dca824e4103a5bf470dfcfffbedb3a65"
+    },
+    {
+      "id": 95,
+      "name": "DUNGEON.BIN",
+      "title": "Dungeon descriptions",
+      "keyword": "dungeon",
+      "sha256": "6c50702680a01582ad8269a4d41c7b214774f1c7122db5ced363721b3a6401f6"
+    },
+    {
+      "id": 96,
+      "name": "PIRATE.BIN",
+      "title": "Pirate character",
+      "keyword": "pirate",
+      "sha256": "e0f7232d049490e13f1be5fd369da7e2586f037a6f0d53d29040bd06882d6728"
+    },
+    {
+      "id": 97,
+      "name": "STARSHIP.BIN",
+      "title": "Spaceship character",
+      "keyword": "spaceship",
+      "sha256": "3c1a783d4cd917b9c8a2cf7a56e5b4ac848a60db94e943c66aff2bf86eb5cd29"
+    },
+    {
+      "id": 98,
+      "name": "FRONTIER.BIN",
+      "title": "Frontier character",
+      "keyword": "frontier",
+      "sha256": "72cec77ba36cd0862d4296de4c881cc91e9530a7f1c3093b8fb2c8158ed4aaf3"
+    },
+    {
+      "id": 99,
+      "name": "FAIRY.BIN",
+      "title": "Fairy-tale character",
+      "keyword": "fairytale",
+      "sha256": "c0652f7750ec22426790f1a64d62b645bcf08e4f7b6ec441093682df818eeb9e"
+    },
+    {
+      "id": 100,
+      "name": "STORY.BIN",
+      "title": "Story sparks",
+      "keyword": "premise",
+      "sha256": "3d04df49ffb0d2a5bd271481b6d5187ec1f4df6d1a16a05ad1e515bc95a129eb"
+    }
+  ]
+}

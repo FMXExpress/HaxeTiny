@@ -5,3 +5,5 @@
 .voice-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 10px}.voice-controls button{font-size:10px;padding:6px 9px;border:1px solid #d7dece;border-radius:6px;background:#f2f6e9;color:#526e3f}.voice-controls button[aria-pressed=true]{background:#d6ef9b;border-color:#a3bd7c;color:#29452d}.voice-controls label{display:flex;align-items:center;gap:5px;font-size:9px;color:#829174;margin-left:auto}.voice-controls input[type=range]{width:65px;accent-color:#6d8c50;margin:0}.spoken-word{background:#d6ef9b;color:#25442e;border-radius:3px;padding:1px 0}#voiceState{font-size:9px;color:#738664;min-height:0;margin-bottom:6px}
 
 .history-item.active{color:#d6ef9b;font-weight:600}
+
+.expert-picker{display:flex;gap:10px;align-items:center;margin-bottom:6px}.expert-picker label{font-size:10px;color:#71815f;white-space:nowrap}.expert-picker select{font:inherit;font-size:11px;background:#f2f6e9;color:#395633;border:1px solid #d7dece;border-radius:6px;padding:7px;min-width:0;flex:1}#expertStatus{font-size:10px;line-height:1.5;color:#7b8b6c;margin-bottom:10px;overflow-wrap:anywhere}

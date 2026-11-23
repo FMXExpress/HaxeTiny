@@ -1,0 +1,165 @@
+{
+  "method": "Frozen PasTiny SPEC100 paired evaluation; creativity 0; Haxe float inference with double accumulators vs published Pascal integer inference; exact includes punctuation.",
+  "totals": {
+    "original60": {
+      "questions": 60,
+      "routingAgreement": 60,
+      "pascalAnswerAgreement": 60,
+      "exactAnswers": 50
+    },
+    "specialists": {
+      "questions": 1381,
+      "routingAgreement": 1381,
+      "pascalAnswerAgreement": 1361,
+      "exactAnswers": 1161
+    }
+  },
+  "differences": [
+    {
+      "question": "what is 14 in roman numerals",
+      "id": 83,
+      "expected": "XIV.",
+      "answer": "XVIV.",
+      "pascal": "XVIV."
+    },
+    {
+      "question": "what is the fastest land animal",
+      "id": 51,
+      "expected": "The cheetah.",
+      "answer": "The cheetalf the Sunday.",
+      "pascal": "The cheetalf the Sunday."
+    },
+    {
+      "question": "how many moons does mars have",
+      "id": 61,
+      "expected": "Two.",
+      "answer": "Mars has four legs.",
+      "pascal": "Mars has four legs."
+    },
+    {
+      "question": "where is the eiffel tower",
+      "id": 78,
+      "expected": "Paris, France.",
+      "answer": "Paris.",
+      "pascal": "Paris."
+    },
+    {
+      "question": "what is dos",
+      "id": 1,
+      "expected": "Disk Operating System.",
+      "answer": "DOS.",
+      "pascal": "DOS."
+    },
+    {
+      "question": "name the continents",
+      "id": 73,
+      "expected": "Africa, Antarctica, Asia, Australia, Europe, North America and South America.",
+      "answer": "Antarctica.",
+      "pascal": "Antarctica."
+    },
+    {
+      "question": "how many legs does an insect have",
+      "id": 51,
+      "expected": "It has two legs.",
+      "answer": "Six.",
+      "pascal": "Six."
+    },
+    {
+      "question": "what is 99 in roman numerals",
+      "id": 83,
+      "expected": "XCIX.",
+      "answer": "XCVIX.",
+      "pascal": "XCVIX."
+    },
+    {
+      "question": "what is the chemical symbol for iron",
+      "id": 69,
+      "expected": "It is Fe.",
+      "answer": "Fe.",
+      "pascal": "Fe."
+    },
+    {
+      "question": "what continent is kenya in",
+      "id": 73,
+      "expected": "In Africa.",
+      "answer": "Africa.",
+      "pascal": "Africa."
+    },
+    {
+      "question": "what command lists my files",
+      "id": 1,
+      "expected": "DIR.",
+      "answer": "TYPE.",
+      "pascal": "TYPE."
+    },
+    {
+      "question": "dos how do i display a text file",
+      "id": 1,
+      "expected": "TYPE.",
+      "answer": "DIS.",
+      "pascal": "DIS."
+    },
+    {
+      "question": "which command displays a file listing",
+      "id": 1,
+      "expected": "DIR.",
+      "answer": "TYPE.",
+      "pascal": "TYPE."
+    },
+    {
+      "question": "move to a different working directory",
+      "id": 1,
+      "expected": "CD.",
+      "answer": "CDIR.",
+      "pascal": "CDIR."
+    },
+    {
+      "question": "how do i divide without the remainder",
+      "id": 2,
+      "expected": "div.",
+      "answer": "mod.",
+      "pascal": "mod."
+    },
+    {
+      "question": "pascal what keyword opens a compound statement",
+      "id": 2,
+      "expected": "begin.",
+      "answer": "end.",
+      "pascal": "end."
+    },
+    {
+      "question": "in a 386 system what task is handled by the working ram",
+      "id": 3,
+      "expected": "Holds working data while powered.",
+      "answer": "Holds one a when.",
+      "pascal": "Holds one a when."
+    },
+    {
+      "question": "what is rom for at startup",
+      "id": 3,
+      "expected": "Keeps firmware without power.",
+      "answer": "Autalloed without.",
+      "pascal": "Autalloed without."
+    },
+    {
+      "question": "in a 386 system what task is handled by the rom chip",
+      "id": 3,
+      "expected": "Keeps firmware without power.",
+      "answer": "Executes instructions.",
+      "pascal": "Executes instructions."
+    },
+    {
+      "question": "which job does the cpu perform",
+      "id": 3,
+      "expected": "Executes instructions.",
+      "answer": "Sends bits one at a time.",
+      "pascal": "Sends bits one at a time."
+    }
+  ],
+  "provenance": {
+    "pasTinyCommit": "7277199b701733cb8b2630f832b34d17d52c24b0",
+    "corpusSha256": "5fe086d99606944985429988803386b2ed54d4b965b7bb56ab59b04120423292",
+    "catalogSha256": "4fec5158aa577b7c15c80fb7ff64a8fc649a4e6b4f51f40fc1e98324227269a1",
+    "workerSha256": "5b751133ecd8b91b8394f867e69252eabf93a5a2a761affc80975780e738e86d"
+  }
+}

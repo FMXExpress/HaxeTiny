@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const path = require('node:path');
 class Element {
- constructor(tag = 'div') {this.tagName = tag; this.children = []; this.attrs = {}; this.style = {}; this.hidden = false; this.scrollHeight = 100; this._text = '';}
+ constructor(tag = 'div') {this.tagName = tag; this.children = []; this.options = [];  this.attrs = {}; this.style = {}; this.hidden = false; this.scrollHeight = 100; this._text = '';}
  set innerHTML(value) {this.children = []; this._text = value;}
  get innerHTML() {return this._text;}
  set textContent(value) {this._text = value; this.children = [];}
