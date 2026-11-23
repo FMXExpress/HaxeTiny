@@ -56,10 +56,13 @@ class ExpertCatalog {
 	}
 	decode(id,bytes) {
 		let entry = this.get(id);
-		if(haxe_crypto_Sha256.make(bytes).toHex() != entry.sha256) {
+		if(ExpertCatalog.digest(bytes) != entry.sha256) {
 			throw haxe_Exception.thrown("Expert model checksum mismatch: " + entry.title);
 		}
 		return new Model(bytes);
+	}
+	static digest(bytes) {
+		return haxe_crypto_Sha256.make(bytes).toHex();
 	}
 }
 ExpertCatalog.__name__ = true;
@@ -402,6 +405,7 @@ class Main {
 				Main.text("expertStatus","100 specialists available · one active model at a time");
 				break;
 			case "catalogError":
+				(js_Boot.__cast(Main.el("expertMode") , HTMLSelectElement)).value = "0";
 				Main.text("expertStatus","Specialists unavailable; original Tiny still works.");
 				break;
 			case "done":
@@ -549,7 +553,7 @@ class Main {
 			reader.readAsArrayBuffer(f);
 		};
 		Main.el("reload").onclick = function(_) {
-			(js_Boot.__cast(Main.el("expertMode") , HTMLSelectElement)).value = "0";
+			(js_Boot.__cast(Main.el("expertMode") , HTMLSelectElement)).value = "-1";
 			Main.loadBundled();
 			Main.worker.postMessage({ type : "catalog"});
 		};

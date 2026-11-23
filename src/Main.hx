@@ -33,7 +33,7 @@ class Main {
     var entries:Array<ExpertEntry>=m.entries;
     for(entry in entries){var option=Browser.document.createOptionElement();option.value=Std.string(entry.id);option.textContent=StringTools.lpad(Std.string(entry.id),'0',3)+' · '+entry.title;select.appendChild(option);}
     select.value=selected;select.disabled=busy;text('expertStatus','100 specialists available · one active model at a time');
-   case 'catalogError':text('expertStatus','Specialists unavailable; original Tiny still works.');
+   case 'catalogError':cast(el('expertMode'),js.html.SelectElement).value='0';text('expertStatus','Specialists unavailable; original Tiny still works.');
    case 'route':
     activeExpertTitle=m.title;text('expertStatus','Selecting '+m.title+(m.corrected?' · Read as: '+m.text:''));
     if(reply!=null)reply.textContent='Loading '+m.title+'…';
@@ -52,7 +52,7 @@ class Main {
   for(button in Browser.document.querySelectorAll('[data-prompt]')){var b:Element=cast button;b.onclick=function(_){input.value=b.getAttribute('data-prompt');text('count',input.value.length+' / 72');ask();};}
   var range:InputElement=cast el('creativity');range.oninput=function(_)text('creativityValue',range.value);
   var file:InputElement=cast el('modelFile');file.onchange=function(_){if(file.files.length==0)return;var f=file.files[0];if(f.size>2000000){notice('Choose a Tiny model smaller than 2 MB.');return;}beginLoad();var reader=new js.html.FileReader();reader.onload=function(_){cast(el('expertMode'),js.html.SelectElement).value='0';worker.postMessage({type:'load',buffer:reader.result,custom:true});text('size',Math.round(f.size/1024)+' KB');};reader.onerror=function(_){notice('Could not read this file.');restore();};reader.readAsArrayBuffer(f);};
-  el('reload').onclick=function(_){cast(el('expertMode'),js.html.SelectElement).value='0';loadBundled();worker.postMessage({type:'catalog'});};loadBundled();worker.postMessage({type:'catalog'});
+  el('reload').onclick=function(_){cast(el('expertMode'),js.html.SelectElement).value='-1';loadBundled();worker.postMessage({type:'catalog'});};loadBundled();worker.postMessage({type:'catalog'});
  }
  static function notice(s:String)text('notice',s);
  static function restore(){text('status',ready?'Model ready':'Model unavailable');controls();}
