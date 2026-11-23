@@ -12,8 +12,16 @@ class ExpertCatalog {
   }
  }
  public function get(id:Int):ExpertEntry {for(e in entries)if(e.id==id)return e;throw 'Unknown expert: '+id;}
+ static function digest(bytes:Bytes):String {
+  #if python
+  // Use Python's standard-library implementation rather than big-integer emulation.
+  var hash=python.lib.Hashlib.sha256();hash.update(cast bytes.getData());return hash.hexdigest();
+  #else
+  return haxe.crypto.Sha256.make(bytes).toHex();
+  #end
+ }
  public function decode(id:Int,bytes:Bytes):Model {
-  var entry=get(id);if(haxe.crypto.Sha256.make(bytes).toHex()!=entry.sha256)throw 'Expert model checksum mismatch: '+entry.title;
+  var entry=get(id);if(digest(bytes)!=entry.sha256)throw 'Expert model checksum mismatch: '+entry.title;
   return new Model(bytes);
  }
 }

@@ -53,10 +53,13 @@ class ExpertCatalog {
 	}
 	decode(id,bytes) {
 		let entry = this.get(id);
-		if(haxe_crypto_Sha256.make(bytes).toHex() != entry.sha256) {
+		if(ExpertCatalog.digest(bytes) != entry.sha256) {
 			throw haxe_Exception.thrown("Expert model checksum mismatch: " + entry.title);
 		}
 		return new Model(bytes);
+	}
+	static digest(bytes) {
+		return haxe_crypto_Sha256.make(bytes).toHex();
 	}
 }
 ExpertCatalog.__name__ = true;
